@@ -1,16 +1,79 @@
-﻿  Quad.cpp
+﻿  QuadTree.cpp
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
 C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
-  util.cpp
-C:\Users\User\Desktop\nbody_parallel\common\util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\User\Desktop\nbody_parallel\common\util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
-C:\Users\User\Desktop\nbody_parallel\common\util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
-C:\Users\User\Desktop\nbody_parallel\common\util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
-C:\Users\User\Desktop\nbody_parallel\common\util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
-C:\Users\User\Desktop\nbody_parallel\common\util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\Header\QuadTree.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(11,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(11,48): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(12,97): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(12,74): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(12,52): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(12,32): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(14,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\QuadTree.cpp(14,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Simulation.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\Header\QuadTree.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(23,43): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(23,35): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(106,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(107,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(108,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(109,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(158,38): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(158,35): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\nbody_BH_serial\Simulation.cpp(159,68): warning C4305: 'argument': truncation from 'const double' to 'T'
+          with
+          [
+              T=float
+          ]
   Generating Code...
   nbody_BH_serial.vcxproj -> C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\Debug\nbody_BH_serial.exe

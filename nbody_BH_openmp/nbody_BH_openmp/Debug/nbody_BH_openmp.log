@@ -1,0 +1,34 @@
+﻿  Simulation.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\Header\QuadTree.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\nbody_BH_openmp\Simulation.cpp(24,43): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\nbody_BH_openmp\Simulation.cpp(24,35): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\nbody_BH_openmp\Simulation.cpp(156,38): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\nbody_BH_openmp\Simulation.cpp(156,35): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\nbody_BH_openmp\Simulation.cpp(157,68): warning C4305: 'argument': truncation from 'const double' to 'T'
+          with
+          [
+              T=float
+          ]
+  nbody_BH_openmp.vcxproj -> C:\Users\User\Desktop\nbody_parallel\nbody_BH_openmp\Debug\nbody_BH_openmp.exe

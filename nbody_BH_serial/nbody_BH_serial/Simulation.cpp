@@ -103,14 +103,9 @@ void Simulation::update() {
 
   Timer t(__func__);
   Quad* boundary = new Quad(0, 0, _width, _height);
-  int left = boundary->GetLeft();
-  int top = boundary->GetTop();
-  int width = boundary->GetWidth();
-  int height = boundary->GetHeight();
   qtree = new QuadTree(boundary);
 
-  // every body interacts with every other body
-  // which is why the nested loops are needed
+  //Add body into quadTree
   for (int i = 0; i < NUM_BODIES - 1; ++i) {
     qtree->InsertElement(&_bodies[i], _zoom);
   }
