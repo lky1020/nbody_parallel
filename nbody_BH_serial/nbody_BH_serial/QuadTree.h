@@ -49,18 +49,6 @@ public:
     bool GetDivided() const {
         return divided_;
     }
-    double GetCoM_Mass() const {
-        return CoM_[0];
-    }
-    double GetCoM_X() const {
-        return CoM_[1];
-    }
-    double GetCoM_Y() const {
-        return CoM_[2];
-    }
-    double GetCoM_Z() const {
-        return CoM_[3];
-    }
     sf::IntRect GetRect() const {
         return rect_;
     }
