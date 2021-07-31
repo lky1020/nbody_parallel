@@ -152,7 +152,6 @@
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Simulation.cpp" />
-    <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quad.h" />
