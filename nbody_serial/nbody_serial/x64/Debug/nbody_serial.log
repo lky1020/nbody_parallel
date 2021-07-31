@@ -1,0 +1,53 @@
+﻿  Body.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+  main.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+  Simulation.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(16,43): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(16,35): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(54,34): warning C4018: '>': signed/unsigned mismatch
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(56,34): warning C4018: '>': signed/unsigned mismatch
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(111,38): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(111,35): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\nbody_serial\Simulation.cpp(112,68): warning C4305: 'argument': truncation from 'const double' to 'T'
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+Simulation.obj : error LNK2001: unresolved external symbol "public: static class sf::RenderStates const sf::RenderStates::Default" (?Default@RenderStates@sf@@2V12@B)
+Simulation.obj : error LNK2001: unresolved external symbol "public: static class sf::Color const sf::Color::Black" (?Black@Color@sf@@2V12@B)
+Simulation.obj : error LNK2001: unresolved external symbol "public: static class sf::Color const sf::Color::Red" (?Red@Color@sf@@2V12@B)
+C:\Users\User\Desktop\nbody_parallel\nbody_serial\x64\Debug\nbody_serial.exe : fatal error LNK1120: 3 unresolved externals

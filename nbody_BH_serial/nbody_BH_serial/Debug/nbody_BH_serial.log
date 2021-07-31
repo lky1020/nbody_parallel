@@ -1,0 +1,16 @@
+﻿  Quad.cpp
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+  util.cpp
+C:\Users\User\Desktop\nbody_parallel\common\util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+C:\Users\User\Desktop\nbody_parallel\common\util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+  Generating Code...
+  nbody_BH_serial.vcxproj -> C:\Users\User\Desktop\nbody_parallel\nbody_BH_serial\Debug\nbody_BH_serial.exe
