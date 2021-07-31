@@ -8,8 +8,6 @@
 
 class QuadTree {
 public:
-    double CoM_[4] = {0.0, 0.0, 0.0, 0.0};
-
     QuadTree();
     QuadTree(Quad* boundary);
     void InsertElement(Body *b, float _zoom);
