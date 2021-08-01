@@ -62,35 +62,25 @@ void Simulation::poll_events() {
     }
   }
 
-  // move the view if the mouse is in one of the four corners of the window
-  if (sf::Mouse::getPosition().x > (_width - 20)) _view.move(2 * _zoom, 0);
-  if (sf::Mouse::getPosition().x < (0 + 20)) _view.move(-2 * _zoom, 0);
-  if (sf::Mouse::getPosition().y > (_height - 20)) _view.move(0, 2 * _zoom);
-  if (sf::Mouse::getPosition().y < (0 + 20)) _view.move(0, -2 * _zoom);
-
   // don't forget to set the view after modifying it
   _window.setView(_view);
 }
 
 // updates all bodies
 void Simulation::update() {
-  // calculate delta time
-  static sf::Clock clock;
-  auto dt = clock.restart().asSeconds();
-
   Timer t(__func__);
 
   // every body interacts with every other body
   // which is why the nested loops are needed
   for (int i = 0; i < NUM_BODIES - 1; ++i) {
     for (int j = i + 1; j < NUM_BODIES; ++j) {
-      _bodies[i].interact(_bodies[j], dt);
+      _bodies[i].interact(_bodies[j]);
     }
   }
 
   // update bodies' positions
   for (int i = 0; i < NUM_BODIES; ++i) {
-    _bodies[i].update(dt);
+    _bodies[i].update();
   }
 }
 

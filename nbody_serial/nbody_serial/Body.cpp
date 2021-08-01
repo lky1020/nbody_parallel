@@ -3,7 +3,7 @@
 
 #include "Body.h"
 
-Body& Body::update(double dt) {
+Body& Body::update() {
   // update velocity
   _velocity.x += _accel.x;
   _velocity.y += _accel.y;
@@ -23,7 +23,7 @@ Body& Body::update(double dt) {
 }
 
 // calculates the effects of an interaction between 2 bodies
-void Body::interact(Body& other, double dt) {
+void Body::interact(Body& other) {
   vec3 posDiff{};  // position difference between the 2 bodies
   posDiff.x = (_position.x - other.position().x) * TO_METERS;  // calculate it
   posDiff.y = (_position.y - other.position().y) * TO_METERS;

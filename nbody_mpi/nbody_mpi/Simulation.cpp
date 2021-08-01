@@ -257,12 +257,6 @@ void Simulation::poll_events() {
     }
   }
 
-  // move the view if the mouse is in one of the four corners of the window
-  if (sf::Mouse::getPosition().x > (_width - 20)) _view.move(2 * _zoom, 0);
-  if (sf::Mouse::getPosition().x < (0 + 20)) _view.move(-2 * _zoom, 0);
-  if (sf::Mouse::getPosition().y > (_height - 20)) _view.move(0, 2 * _zoom);
-  if (sf::Mouse::getPosition().y < (0 + 20)) _view.move(0, -2 * _zoom);
-
   // don't forget to set the view after modifying it
   _window.setView(_view);
 }

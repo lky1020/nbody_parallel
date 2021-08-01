@@ -21,8 +21,8 @@ class Body {
   Body(vec3 pos, vec3 vel, vec3 accel, double mass)
       : _position(pos), _velocity(vel), _accel(accel), _mass(mass) {}
 
-  Body& update(double dt);
-  void interact(Body& other, double dt);
+  Body& update();
+  void interact(Body& other);
 
   static std::vector<Body> generate(unsigned int);
 

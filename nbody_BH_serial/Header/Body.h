@@ -25,7 +25,7 @@ class Body {
   Body(vec3 pos, vec3 vel, vec3 accel, double radius, double mass)
       : _position(pos), _velocity(vel), _accel(accel), _radius(radius), _mass(mass) {}
 
-  Body& update(double dt);
+  Body& update();
   bool in(Quad& q, float _zoom);
   //void ResetForce();      // used by _fx, _fy, _fz
   void AddForce(Body& b, float _zoom);

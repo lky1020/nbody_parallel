@@ -97,17 +97,11 @@ void DrawQTree(QuadTree* root, sf::RenderWindow& window) {
 
 // updates all bodies
 void Simulation::update() {
-  // calculate delta time
-  static sf::Clock clock;
-  auto dt = clock.restart().asSeconds();
-
   Timer t(__func__);
   Quad* boundary = new Quad(0, 0, _width, _height);
   qtree = new QuadTree(boundary);
 
   //Add body into quadTree
-  omp_set_dynamic(0);
-  omp_set_num_threads(4);
   for (int i = 0; i < NUM_BODIES - 1; ++i) {
     qtree->InsertElement(&_bodies[i], _zoom);
   }
@@ -120,7 +114,7 @@ void Simulation::update() {
 
       // Prevent sun to move
       if (i != 0) {
-          _bodies[i].update(dt);
+          _bodies[i].update();
       }
   }
 }

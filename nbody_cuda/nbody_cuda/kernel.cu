@@ -40,8 +40,7 @@ void interact_bodies_cuda(std::vector<Body>& bodies, unsigned int num_bodies) {
     CUDA_WARN(cudaMalloc((void**)&buf_bodies, data_size));
 
     // copy data to device
-    CUDA_WARN(
-        cudaMemcpy(buf_bodies, &bodies[0], data_size, cudaMemcpyHostToDevice));
+    CUDA_WARN(cudaMemcpy(buf_bodies, &bodies[0], data_size, cudaMemcpyHostToDevice));
 
     auto num_blocks = num_bodies / THREAD_NUM;
     // run the kernel
@@ -51,8 +50,7 @@ void interact_bodies_cuda(std::vector<Body>& bodies, unsigned int num_bodies) {
 
     // copy results back to host
     // no need to use another vector, the original one can be overwritten
-    CUDA_WARN(
-        cudaMemcpy(&bodies[0], buf_bodies, data_size, cudaMemcpyDeviceToHost));
+    CUDA_WARN(cudaMemcpy(&bodies[0], buf_bodies, data_size, cudaMemcpyDeviceToHost));
 
     // free the buffer
     CUDA_WARN(cudaFree(buf_bodies));

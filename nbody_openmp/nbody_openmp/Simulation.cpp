@@ -63,28 +63,16 @@ void Simulation::poll_events() {
     }
   }
 
-  // move the view if the mouse is in one of the four corners of the window
-  if (sf::Mouse::getPosition().x > (_width - 20)) _view.move(2 * _zoom, 0);
-  if (sf::Mouse::getPosition().x < (0 + 20)) _view.move(-2 * _zoom, 0);
-  if (sf::Mouse::getPosition().y > (_height - 20)) _view.move(0, 2 * _zoom);
-  if (sf::Mouse::getPosition().y < (0 + 20)) _view.move(0, -2 * _zoom);
-
   // don't forget to set the view after modifying it
   _window.setView(_view);
 }
 
 // updates all bodies
 void Simulation::update() {
-  static sf::Clock clock;
-  auto dt = clock.restart().asSeconds();
-
   Timer t(__func__);
 
 // every body interacts with all other body
 // which is why the nested loops are needed
-  omp_set_dynamic(0);
-  omp_set_num_threads(8);
-
 #pragma omp parallel for schedule(static, 1)
   for (int i = 0; i < NUM_BODIES; ++i) {
 #pragma omp parallel for
@@ -96,7 +84,7 @@ void Simulation::update() {
 // update bodies' positions
 #pragma omp parallel for
   for (int i = 0; i < NUM_BODIES; ++i) {
-    _bodies[i].update(dt);  // update the body
+    _bodies[i].update();  // update the body
   }
 }
 
