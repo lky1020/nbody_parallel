@@ -75,7 +75,7 @@ void Simulation::update() {
 // which is why the nested loops are needed
 #pragma omp parallel for schedule(static, 1)
   for (int i = 0; i < NUM_BODIES; ++i) {
-#pragma omp parallel for
+#pragma omp parallel for num_threads(8)
     for (int j = i + 1; j < NUM_BODIES; ++j) {
       _bodies[i].interact(_bodies[j]);
     }

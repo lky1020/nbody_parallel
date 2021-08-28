@@ -107,7 +107,7 @@ void Simulation::update() {
   }
 
   // update the forces, positions, velocities, and accelerations
-#pragma omp parallel for //speed up the update process with openMP
+#pragma omp parallel for num_threads(8) //speed up the update process with openMP
   for (int i = 0; i < NUM_BODIES; i++) {
       //_bodies[i].ResetForce(); //_fx, _fy, _fz not used
       qtree->UpdateForce(&_bodies[i], _zoom);

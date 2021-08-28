@@ -4,7 +4,7 @@
 #include "Body.h"
 #include "Timer.h"
 
-Body &Body::update(double dt) {
+Body &Body::update() {
   // update velocity
   _velocity.x += _accel.x;
   _velocity.y += _accel.y;
