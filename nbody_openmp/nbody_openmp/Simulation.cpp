@@ -82,7 +82,7 @@ void Simulation::update() {
   }
 
 // update bodies' positions
-#pragma omp parallel for
+#pragma omp parallel for num_threads(8)
   for (int i = 0; i < NUM_BODIES; ++i) {
     _bodies[i].update();  // update the body
   }
