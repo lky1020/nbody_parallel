@@ -1,0 +1,43 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (N-BODY_CUDA.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Body.cpp
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+  Simulation.cpp
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(20,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(49,41): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(50,61): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(51,39): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(52,20): warning C4244: '=': conversion from 'double' to 'sf::Uint8', possible loss of data
+D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common\Util.h(58,16): warning C4244: 'return': conversion from 'double' to 'unsigned char', possible loss of data
+C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\N-BODY_CUDA\Simulation.cpp(18,43): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\N-BODY_CUDA\Simulation.cpp(18,35): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\N-BODY_CUDA\Simulation.cpp(110,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\N-BODY_CUDA\Simulation.cpp(110,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\N-BODY_CUDA\Simulation.cpp(111,68): warning C4305: 'argument': truncation from 'const double' to 'T'
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+     Creating library C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\x64\Debug\nBody_cuda_sharedM.lib and object C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\x64\Debug\nBody_cuda_sharedM.exp
+  N-BODY_CUDA.vcxproj -> C:\Users\User\source\repos\N-BODY_CUDA_SHARED\N-BODY_CUDA\x64\Debug\nBody_cuda_sharedM.exe

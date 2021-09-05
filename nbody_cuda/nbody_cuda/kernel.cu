@@ -8,99 +8,137 @@
 #include "Constants.h"
 #include "Simulation.h"
 
-/*
- * Cuda kernels and interface functions.
- */
+int main() {
+    /*
+    * A SIMPLE PROCESS OF N BODY SIMULATION IN SERIAL
+    *
+    * STEP	DESCRIPTION
+    * ---------------------
+    *  1.	INITIALIZE THE WINDOW WIDTH AND HEIGHT
+    *  2.	RANDOM GENERATE THE BODY BASED ON THE NUMBER OF BODIES	(BY DEFAULT NUM_BODIES = 1024)
+    *  3.	SET THE ANGLE, RADIUS, VELOCITY OF THE BODY GENERTATE AND PLACE
+    *  4.	PLACE A BODY AT THE CENTER (ACT AS A SUN) BY ASSIGNING A HEAVIEST VALUE OF MASS
+    *  5.	A LOOP WITH i =  1023 (MINUS 1 BCOZ OF SUN) IS TAKE PLACE FOR PROCESS 3 AND 4
+    *  6.	CREATE AND SET WINDOW AND VIEW
+    *  7.	START THE STIMULATION
+    *  8.	CHECK THE SFML EVENT (WINDOW EVENT, MOUSE SCROLL AND KEY PRESS)
+    *  9.	UPDATE THE BODIES BY CALCULATING THE EFFECTS OF INTERACTION (POSITION, DISTANCE, FORCE AND ACCELERATION) BETWEEN 2 BODIES
+    * 10.	UPDATE BODY VELOCITY, POSITION AND ACCELERATION
+    * 11.	PRESENT THE BODIES IN WINDOWS
+    * ***	ALL THE BODIES EXCEPT SUN (THE BODY AT THE CENTER) HAVING THE EQUAL VALUE OF MASS
+    * ***	LIBRARY SFML IS USED TO DISPLAY BODIES
+    * ***	TWO MAIN CLASS WHICH HANDLE DEFINES THE BODY (body.cpp) AND CARRY OUT SIMULATION (simulation.cpp)
+    */
 
- // this macro calls the error checking function so that the file and line number
- // can be shown. Wrap around functions calls to use.
-#define CUDA_WARN(func) \
-  { gpuAssert((func), __FILE__, __LINE__); }
+ 
+    /*
+    * Initialize the windows size and generate random bodies
+    */
+    Simulation nBody_sim(WIDTH, HEIGHT);
 
-// check for CUDA errors
-inline void gpuAssert(cudaError_t code, const char* file, int line,
-    bool abort = true) {
-    if (code != cudaSuccess) {
-        std::cerr << "Error: " << cudaGetErrorString(code) << " in file " << file
-            << " on line " << line << std::flush;
-        if (abort) getchar();
-    }
+    /*
+    * Start Stimulation
+    */
+    nBody_sim.start();
+
+    return EXIT_SUCCESS;
 }
 
-// this function is can be called from the host
-// it does all the necessary cuda mem allocations and copies data from the host
-// to the device and vice versa
-void interact_bodies_cuda(std::vector<Body>& bodies, unsigned int num_bodies) {
-    // data size
-    auto data_size = sizeof(Body) * num_bodies;
-    // buffer for the bodies vector
-    Body* buf_bodies;
+/* CUDA memory allocations and copy memory to the GPU*/
+void updateInCUDA(std::vector<Body>& bodies_h, int nBodies, int nThreads) {
 
-    // allocate memory
-    CUDA_WARN(cudaMalloc((void**)&buf_bodies, data_size));
+/* Declaration for necessary variables needed */
+    /* Number of bytes required for bodies*/
+    int size;
+    /* Number of Blocks */
+    int nBlocks;
+    /* Buffer for bodies */
+    Body* bodies_d;
+ 
+/* Initialization */
+    /* Dynamically allocate host memory */ 
+    size = sizeof(Body) * nBodies;
+    /* Number of Blocks */
+    nBlocks = nBodies / nThreads;
 
-    // copy data to device
-    CUDA_WARN(cudaMemcpy(buf_bodies, &bodies[0], data_size, cudaMemcpyHostToDevice));
+/* Start CUDA Memory Allocation and Copy Memory to CPU */
+    /* Allocate device Memory */
+    cudaMalloc((void**)&bodies_d, size);
 
-    auto num_blocks = num_bodies / THREAD_NUM;
-    // run the kernel
-    calc_forces_and_update << <num_blocks, THREAD_NUM >> > (buf_bodies, num_bodies);
-    // synchronize
-    CUDA_WARN(cudaDeviceSynchronize());
+    /* Copy Host Memory to Device Memory */
+    cudaMemcpy(bodies_d, &bodies_h[0], size, cudaMemcpyHostToDevice);
 
-    // copy results back to host
-    // no need to use another vector, the original one can be overwritten
-    CUDA_WARN(cudaMemcpy(&bodies[0], buf_bodies, data_size, cudaMemcpyDeviceToHost));
+    /* Launch Kernel */
+    interactAndUpdate << < nBlocks, nThreads >> > (bodies_d);
 
-    // free the buffer
-    CUDA_WARN(cudaFree(buf_bodies));
+    /* Synchronize */
+    /* Forces the program to wait for all previously issued commands in 
+    *  all streams on the device to finish before continuing (from the CUDA C Programming Guide).
+    *  So when GPU device is executing kernel, the CPU can continue to work on some other commands and 
+    *  issue more instructions to the device
+    */
+    cudaDeviceSynchronize();
+
+    /* Copy results to host */
+    /* Straight away overwrite the original vector */
+    cudaMemcpy(&bodies_h[0], bodies_d, size, cudaMemcpyDeviceToHost);
+
+    /* Cleanup */
+    cudaFree(bodies_d);
 }
 
-/* kernels */
-// this kernel runs the 2 functions which will calculate the forces and update
-// the bodies
-__global__ void calc_forces_and_update(Body* bodies, unsigned int num_bodies) {
-    calculate_forces(bodies, num_bodies);
-    // it doesn't seem like the threads have to be explicitly synchronized
-    //__syncthreads();
-    update_bodies(bodies, num_bodies);
+/* This function calculate the force of the body and update the velocity, 
+*  position and acceleration of the body.
+*/
+__global__ void interactAndUpdate(Body* bodies) {
+
+    /* Call function calculate the effects of an interaction between 2 bodies */
+    interact(bodies);
+
+    /* Waits until all threads within the same block has reached the command
+    */
+    __syncthreads();
+
+    /* Update the Velocity and position, reset the acceleration of the body */
+    update(bodies);
 }
 
-// calculates forces resulting from the interactions of all bodies
-__device__ void calculate_forces(Body* bodies, unsigned int num_bodies) {
-    // get global position
-    int i = blockDim.x * blockIdx.x + threadIdx.x;
+/* Function calculate the effects of an interaction between 2 bodies */
+__device__ void interact(Body* bodies) {
 
-    for (int j = 0; j < num_bodies; ++j) {
-        if (i != j) {
+    /* Get the position (Column) */
+    int j = blockDim.x * blockIdx.x + threadIdx.x;
+
+    for (int i = 0; i < NUM_BODIES - 1; ++i) {
+        if (j != i) {
             // vector to store the position difference between the 2 bodies
             vec3 posDiff{};
-            // calculate it
-            posDiff.x = (bodies[j].position().x - bodies[i].position().x) * TO_METERS;
-            posDiff.y = (bodies[j].position().y - bodies[i].position().y) * TO_METERS;
-            posDiff.z = (bodies[j].position().z - bodies[i].position().z) * TO_METERS;
+            // calculation
+            posDiff.x = (bodies[i].position().x - bodies[j].position().x) * TO_METERS;
+            posDiff.y = (bodies[i].position().y - bodies[j].position().y) * TO_METERS;
+            posDiff.z = (bodies[i].position().z - bodies[j].position().z) * TO_METERS;
             // the actual distance is the length of the vector
             auto dist = sqrtf(posDiff.x * posDiff.x + posDiff.y * posDiff.y +
                 posDiff.z * posDiff.z);
 
             // calculate force
-            double F = TIME_STEP * (G * bodies[i].mass() * bodies[j].mass()) /
+            double F = TIME_STEP * (G * bodies[j].mass() * bodies[i].mass()) /
                 ((dist * dist + SOFTENING * SOFTENING) * dist);
 
             // set this body's acceleration
-            bodies[i].acceleration().x += F * posDiff.x / bodies[i].mass();
-            bodies[i].acceleration().y += F * posDiff.y / bodies[i].mass();
-            bodies[i].acceleration().z += F * posDiff.z / bodies[i].mass();
+            bodies[j].acceleration().x += F * posDiff.x / bodies[j].mass();
+            bodies[j].acceleration().y += F * posDiff.y / bodies[j].mass();
+            bodies[j].acceleration().z += F * posDiff.z / bodies[j].mass();
         }
     }
 }
 
-// integrates positions
-__device__ void update_bodies(Body* bodies, unsigned int num_bodies) {
-    // get global position
+/* update body position */
+__device__ void update(Body* bodies) {
+
+    /* Get the position (Column) */
     int i = blockDim.x * blockIdx.x + threadIdx.x;
 
-    // update this body:
     // update velocity
     bodies[i].velocity().x += bodies[i].acceleration().x;
     bodies[i].velocity().y += bodies[i].acceleration().y;
@@ -117,59 +155,4 @@ __device__ void update_bodies(Body* bodies, unsigned int num_bodies) {
     bodies[i].position().z += TIME_STEP * bodies[i].velocity().z / TO_METERS;
 }
 
-// this is based on GPU Gems
-// it does increase performance slightly, however I couldn't get it to work
-// fully. The body positions are not updated quite correctly
-__device__ void test(Body* bodies, unsigned int num_bodies) {
-    // get global position
-    int i = blockDim.x * blockIdx.x + threadIdx.x;
 
-    for (int tile = 0; tile < gridDim.x; tile++) {
-        // store positions in global memory for faster access
-        __shared__ float3 spos[THREAD_NUM];
-        auto tpos = bodies[tile * blockDim.x + threadIdx.x].position();
-        spos[threadIdx.x] = make_float3(tpos.x, tpos.y, tpos.z);
-        // make sure all threads have reached this point before continuing
-        __syncthreads();
-
-        // loop unrolling supposedly increases performance. I couldn't find any
-        // evidence this is true as apparently compilers to this by default
-        //#pragma unroll 32
-        for (int j = i + 1; j < THREAD_NUM; ++j) {
-            if (i != j) {
-                // vector to store the position difference between the 2 bodies
-                vec3 posDiff{};
-                posDiff.x = (spos[j].x - bodies[i].position().x) * TO_METERS;
-                posDiff.y = (spos[j].y - bodies[i].position().y) * TO_METERS;
-                posDiff.z = (spos[j].z - bodies[i].position().z) * TO_METERS;
-                // the actual distance is the length of the vector
-                auto dist = sqrtf(posDiff.x * posDiff.x + posDiff.y * posDiff.y +
-                    posDiff.z * posDiff.z);
-                // calculate force
-                double F = TIME_STEP * (G * bodies[i].mass() * bodies[j].mass()) /
-                    ((dist * dist + SOFTENING * SOFTENING) * dist);
-
-                // set this body's acceleration
-                bodies[j].acceleration().x -= F * posDiff.x / bodies[j].mass();
-                bodies[j].acceleration().y -= F * posDiff.y / bodies[j].mass();
-                bodies[j].acceleration().z -= F * posDiff.z / bodies[j].mass();
-
-                // set the other body's acceleration
-                bodies[i].acceleration().x += F * posDiff.x / bodies[i].mass();
-                bodies[i].acceleration().y += F * posDiff.y / bodies[i].mass();
-                bodies[i].acceleration().z += F * posDiff.z / bodies[i].mass();
-            }
-            // make sure all threads have reached this point
-            __syncthreads();
-        }
-    }
-}
-
-int main() {
-    // create a simulation
-    Simulation sim(WIDTH, HEIGHT);
-    // start it
-    sim.start();
-
-    return EXIT_SUCCESS;
-}

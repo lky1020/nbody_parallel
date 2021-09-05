@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\User\Desktop\nbody_parallel\nbody_cuda\x64\Debug\nbody_cuda.exe</FullPath>
+      <FullPath>C:\Users\User\source\repos\nbody_cuda\nbody_cuda\x64\Debug\nBody_cuda.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
