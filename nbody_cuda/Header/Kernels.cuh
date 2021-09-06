@@ -2,20 +2,18 @@
 #define KERNELS_H
 
 #include <cuda.h>
-
-#include "Body.h"
 #include "Constants.h"
+#include "Body.h"
 
 /*
 * Initialize Number of Threads 
-* Current Number of Threads = 128
 */
 const int THREAD_NUM = 256;
 
 // functions which run the kernels
 void updateInCUDA(std::vector<Body>& bodies_h, int nBodies, int nThreads);
 
-// actual kernels
+// kernels that will be launch
 __global__ void interactAndUpdate(Body* bodies);
 __device__ void interact(Body* bodies);
 __device__ void update(Body* bodies);

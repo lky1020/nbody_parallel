@@ -80,6 +80,7 @@ void Simulation::update() {
   //        _bodies[i].interact(_bodies[j]);
   //    }
   //}
+
   updateInCUDA(_bodies, NUM_BODIES, THREAD_NUM);
 }
 

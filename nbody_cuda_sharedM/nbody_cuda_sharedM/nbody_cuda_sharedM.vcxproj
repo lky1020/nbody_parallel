@@ -48,7 +48,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common;C:\Users\User\source\repos\N-BODY_CUDA_SHARED - Copy\nbody_cuda_sharedM\Header;C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;C:\Users\User\source\repos\nbody_cuda_sharedM_SHARED\nbody_cuda_sharedM\Header;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\common;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\nbody_cuda_sharedM\Header;C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;C:\Users\User\source\repos\nbody_cuda_sharedM_SHARED\nbody_cuda_sharedM\Header;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,7 +67,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel-main\common;C:\Users\User\source\repos\N-BODY_CUDA_SHARED - Copy\nbody_cuda_sharedM\Header;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\common;D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\nbody_cuda_sharedM\Header;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

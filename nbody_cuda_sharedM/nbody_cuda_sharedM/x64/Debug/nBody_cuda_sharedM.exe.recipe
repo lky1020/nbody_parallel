@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\User\source\repos\N-BODY_CUDA_SHARED - Copy\nbody_cuda_sharedM\x64\Debug\nBody_cuda_sharedM.exe</FullPath>
+      <FullPath>D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\nbody_cuda_sharedM\x64\Debug\nBody_cuda_sharedM.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

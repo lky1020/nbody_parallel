@@ -8,6 +8,8 @@
 #include "Constants.h"
 #include "Simulation.h"
 
+/* Variables that used to store the position at the global memory to have a faster access to the body's position*/
+__shared__ float3 posShare[THREAD_NUM];
 
 int main() {
     /*
@@ -51,6 +53,7 @@ void updateInCUDA(std::vector<Body>& bodies_h, int nBodies, int nThreads) {
     /* Declaration for necessary variables needed */
         /* Number of bytes required for bodies*/
     int size;
+
     /* Number of Blocks */
     int nBlocks;
     /* Buffer for bodies */
@@ -99,29 +102,33 @@ __global__ void interactAndUpdate(Body* bodies) {
 }
 
 __device__ void accumulate(Body* bodies) {
-    int i = blockDim.x * blockIdx.x + threadIdx.x;
 
-    for (int tile = 0; tile < gridDim.x ; tile++) {
 
-        // store positions in global memory for faster access
-        __shared__ float3 spos[THREAD_NUM];
+    int idx = blockDim.x * blockIdx.x + threadIdx.x;
+    extern __shared__ float3 posShare[THREAD_NUM];
+
+
+    for (int tile = 0; tile < gridDim.x; tile++) {
+        /* Assign the value of the body position into the shared position */
         auto tpos = bodies[tile * blockDim.x + threadIdx.x].position();
-        spos[threadIdx.x] = make_float3(tpos.x, tpos.y, tpos.z);
-        // make sure all threads have reached this point before continuing
+        posShare[threadIdx.x] = make_float3(tpos.x, tpos.y, tpos.z);
+
+        /* To ensure all the threads reached before proceed to the following process */
         __syncthreads();
 
-        for (int j = i + 1; j < THREAD_NUM; ++j) {
-            if (i != j) {
+        /* Update the Body interaction (Get from the serial code) */
+        for (int j = idx + 1; j < THREAD_NUM; ++j) {
+            if (idx != j) {
                 // vector to store the position difference between the 2 bodies
                 vec3 posDiff{};
-                posDiff.x = (spos[j].x - bodies[i].position().x) * TO_METERS;
-                posDiff.y = (spos[j].y - bodies[i].position().y) * TO_METERS;
-                posDiff.z = (spos[j].z - bodies[i].position().z) * TO_METERS;
+                posDiff.x = (posShare[j].x - bodies[idx].position().x) * TO_METERS;
+                posDiff.y = (posShare[j].y - bodies[idx].position().y) * TO_METERS;
+                posDiff.z = (posShare[j].z - bodies[idx].position().z) * TO_METERS;
                 // the actual distance is the length of the vector
                 auto dist = sqrtf(posDiff.x * posDiff.x + posDiff.y * posDiff.y +
                     posDiff.z * posDiff.z);
                 // calculate force
-                double F = TIME_STEP * (G * bodies[i].mass() * bodies[j].mass()) /
+                double F = TIME_STEP * (G * bodies[idx].mass() * bodies[j].mass()) /
                     ((dist * dist + SOFTENING * SOFTENING) * dist);
 
                 // set this body's acceleration
@@ -135,21 +142,23 @@ __device__ void accumulate(Body* bodies) {
         }
 
     }
-    // make sure all threads have reached this point
+
+    /* To ensure all the threads reached before proceed to the following process */
     __syncthreads();
 
-    bodies[i].velocity().x += bodies[i].acceleration().x;
-    bodies[i].velocity().y += bodies[i].acceleration().y;
-    bodies[i].velocity().z += bodies[i].acceleration().z;
+    /* Update velocity */
+    bodies[idx].velocity().x += bodies[idx].acceleration().x;
+    bodies[idx].velocity().y += bodies[idx].acceleration().y;
+    bodies[idx].velocity().z += bodies[idx].acceleration().z;
 
-    // reset acceleration
-    bodies[i].acceleration().x = 0.0;
-    bodies[i].acceleration().y = 0.0;
-    bodies[i].acceleration().z = 0.0;
+    /* reset acceleration */
+    bodies[idx].acceleration().x = 0.0;
+    bodies[idx].acceleration().y = 0.0;
+    bodies[idx].acceleration().z = 0.0;
 
-    // update position
-    bodies[i].position().x += TIME_STEP * bodies[i].velocity().x / TO_METERS;
-    bodies[i].position().y += TIME_STEP * bodies[i].velocity().y / TO_METERS;
-    bodies[i].position().z += TIME_STEP * bodies[i].velocity().z / TO_METERS;
+    /* update position */
+    bodies[idx].position().x += TIME_STEP * bodies[idx].velocity().x / TO_METERS;
+    bodies[idx].position().y += TIME_STEP * bodies[idx].velocity().y / TO_METERS;
+    bodies[idx].position().z += TIME_STEP * bodies[idx].velocity().z / TO_METERS;
 
 }
