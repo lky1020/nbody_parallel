@@ -12,6 +12,10 @@
 __shared__ float3 posShare[THREAD_NUM];
 
 int main() {
+    /* Implementations of GPU Gems Based CUDA Reference:
+    *   https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-31-fast-n-body-simulation-cuda
+    */
+
     /*
     * A SIMPLE PROCESS OF N BODY SIMULATION IN SERIAL
     *
@@ -103,8 +107,9 @@ __global__ void interactAndUpdate(Body* bodies) {
 
 __device__ void accumulate(Body* bodies) {
 
-
+    /* Calcualte the index of data to be processed */
     int idx = blockDim.x * blockIdx.x + threadIdx.x;
+    /* Variables that used to stored the share position of the body*/
     extern __shared__ float3 posShare[THREAD_NUM];
 
 
@@ -113,7 +118,9 @@ __device__ void accumulate(Body* bodies) {
         auto tpos = bodies[tile * blockDim.x + threadIdx.x].position();
         posShare[threadIdx.x] = make_float3(tpos.x, tpos.y, tpos.z);
 
-        /* To ensure all the threads reached before proceed to the following process */
+        /* To ensure all the threads reached before proceed to the 
+        *  following process, to avoid early reading the data in posShare 
+        */
         __syncthreads();
 
         /* Update the Body interaction (Get from the serial code) */
