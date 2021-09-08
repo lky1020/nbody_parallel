@@ -8,7 +8,7 @@
 
 constexpr unsigned int WIDTH = 1680;             // Window width
 constexpr unsigned int HEIGHT = 960;            // Window height
-constexpr unsigned int NUM_BODIES = (1024);  // Number of bodies
+constexpr unsigned int NUM_BODIES = (1024 * 1);  // Number of bodies
 constexpr double PI = 3.14159265358979323846;    // pi
 constexpr double TO_METERS = 1.496e11;           // Meters in an AU
 constexpr double SYSTEM_SIZE = 3.5;              // Farthest particles in AU

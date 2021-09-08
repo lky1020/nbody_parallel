@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\DegreeY3S1\BMCS3003 Distributed Systems and Parallel Computing\Assignment\nbody_parallel\nbody_cuda\x64\Debug\nBody_cuda.exe</FullPath>
+      <FullPath>C:\Users\User\Desktop\nbody_parallel\nbody_cuda\x64\Debug\nBody_cuda.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
