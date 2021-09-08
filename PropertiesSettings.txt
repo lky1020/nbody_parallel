@@ -1,0 +1,19 @@
+Serial, OpenMP
+Include Directories
+- SFML-2.5.1x32 include
+- Header of each folder
+- common
+
+Library Directories
+- SFML-2.5.1x32 lib
+
+CUDA
+Include Directories
+- SFML-2.5.1x64 include
+- Header of each folder
+- common
+- Nvidia Computing Toolkit --> include
+
+Library Directories
+- SFML-2.5.1x64 lib
+- Nvidia Computing Toolkit --> lib/x64
